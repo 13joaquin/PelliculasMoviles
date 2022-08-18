@@ -1,129 +1,117 @@
 // To parse this JSON data, do
 //
-//     final popular = popularFromMap(jsonString);
+//     final popularRespond = popularRespondFromMap(jsonString);
 
+// ignore_for_file: prefer_if_null_operators, unnecessary_null_comparison, prefer_null_aware_operators
+import 'package:pelicula2022/models/model.dart';
 import 'dart:convert';
 
-class Popular {
-  Popular({
-    this.page,
-    this.results,
-    this.totalPages,
-    this.totalResults,
+class PopularRespond {
+  PopularRespond({
+    required this.id,
+    required this.cast,
+    required this.crew,
   });
 
-  int page;
-  List<Result> results;
-  int totalPages;
-  int totalResults;
+  int id;
+  List<Cast> cast;
+  List<Cast> crew;
 
-  factory Popular.fromJson(String str) => Popular.fromMap(json.decode(str));
+  factory PopularRespond.fromJson(String str) =>
+      PopularRespond.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Popular.fromMap(Map<String, dynamic> json) => Popular(
-        page: json["page"],
-        results:
-            List<Result>.from(json["results"].map((x) => Result.fromMap(x))),
-        totalPages: json["total_pages"],
-        totalResults: json["total_results"],
+  factory PopularRespond.fromMap(Map<String, dynamic> json) => PopularRespond(
+        id: json["id"] == null ? null : json["id"],
+        cast: List<Cast>.from(json["cast"].map((x) => Cast.fromMap(x))),
+        crew: List<Cast>.from(json["crew"].map((x) => Cast.fromMap(x))),
       );
 
   Map<String, dynamic> toMap() => {
-        "page": page,
-        "results": List<dynamic>.from(results.map((x) => x.toMap())),
-        "total_pages": totalPages,
-        "total_results": totalResults,
+        "id": id == null ? null : id,
+        "cast": cast == null
+            ? null
+            : List<dynamic>.from(cast.map((x) => x.toMap())),
+        "crew": crew == null
+            ? null
+            : List<dynamic>.from(crew.map((x) => x.toMap())),
       };
 }
 
-class Result {
-  Result({
-    this.adult,
-    this.backdropPath,
-    this.genreIds,
-    this.id,
-    this.originalLanguage,
-    this.originalTitle,
-    this.overview,
-    this.popularity,
-    this.posterPath,
-    this.releaseDate,
-    this.title,
-    this.video,
-    this.voteAverage,
-    this.voteCount,
+class Cast {
+  Cast({
+    required this.adult,
+    required this.gender,
+    required this.id,
+    required this.knownForDepartment,
+    required this.name,
+    required this.originalName,
+    required this.popularity,
+    required this.profilePath,
+    required this.castId,
+    required this.character,
+    required this.creditId,
+    required this.order,
+    required this.department,
+    required this.job,
   });
 
   bool adult;
-  String backdropPath;
-  List<int> genreIds;
+  int gender;
   int id;
-  OriginalLanguage originalLanguage;
-  String originalTitle;
-  String overview;
+  String knownForDepartment;
+  String name;
+  String originalName;
   double popularity;
-  String posterPath;
-  DateTime releaseDate;
-  String title;
-  bool video;
-  double voteAverage;
-  int voteCount;
+  String profilePath;
+  int castId;
+  String character;
+  String creditId;
+  int order;
+  String department;
+  String job;
 
-  factory Result.fromJson(String str) => Result.fromMap(json.decode(str));
+  factory Cast.fromJson(String str) => Cast.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Result.fromMap(Map<String, dynamic> json) => Result(
-        adult: json["adult"],
-        backdropPath: json["backdrop_path"],
-        genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
-        id: json["id"],
-        originalLanguage: originalLanguageValues.map[json["original_language"]],
-        originalTitle: json["original_title"],
-        overview: json["overview"],
-        popularity: json["popularity"].toDouble(),
-        posterPath: json["poster_path"],
-        releaseDate: DateTime.parse(json["release_date"]),
-        title: json["title"],
-        video: json["video"],
-        voteAverage: json["vote_average"].toDouble(),
-        voteCount: json["vote_count"],
+  factory Cast.fromMap(Map<String, dynamic> json) => Cast(
+        adult: json["adult"] == null ? null : json["adult"],
+        gender: json["gender"] == null ? null : json["gender"],
+        id: json["id"] == null ? null : json["id"],
+        knownForDepartment: json["known_for_department"] == null
+            ? null
+            : json["known_for_department"],
+        name: json["name"] == null ? null : json["name"],
+        originalName:
+            json["original_name"] == null ? null : json["original_name"],
+        popularity:
+            json["popularity"] == null ? null : json["popularity"].toDouble(),
+        profilePath: json["profile_path"] == null ? null : json["profile_path"],
+        castId: json["cast_id"] == null ? null : json["cast_id"],
+        character: json["character"] == null ? null : json["character"],
+        creditId: json["credit_id"] == null ? null : json["credit_id"],
+        order: json["order"] == null ? null : json["order"],
+        department: json["department"] == null ? null : json["department"],
+        job: json["job"] == null ? null : json["job"],
       );
 
   Map<String, dynamic> toMap() => {
-        "adult": adult,
-        "backdrop_path": backdropPath,
-        "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
-        "id": id,
-        "original_language": originalLanguageValues.reverse[originalLanguage],
-        "original_title": originalTitle,
-        "overview": overview,
-        "popularity": popularity,
-        "poster_path": posterPath,
-        "release_date":
-            "${releaseDate.year.toString().padLeft(4, '0')}-${releaseDate.month.toString().padLeft(2, '0')}-${releaseDate.day.toString().padLeft(2, '0')}",
-        "title": title,
-        "video": video,
-        "vote_average": voteAverage,
-        "vote_count": voteCount,
+        "adult": adult == null ? null : adult,
+        "gender": gender == null ? null : gender,
+        "id": id == null ? null : id,
+        "known_for_department":
+            knownForDepartment == null ? null : knownForDepartment,
+        "name": name == null ? null : name,
+        "original_name": originalName == null ? null : originalName,
+        "popularity": popularity == null ? null : popularity,
+        "profile_path": profilePath == null ? null : profilePath,
+        "cast_id": castId == null ? null : castId,
+        "character": character == null ? null : character,
+        "credit_id": creditId == null ? null : creditId,
+        "order": order == null ? null : order,
+        "department": department == null ? null : department,
+        "job": job == null ? null : job,
       };
-}
-
-enum OriginalLanguage { EN }
-
-final originalLanguageValues = EnumValues({"en": OriginalLanguage.EN});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
-    return reverseMap;
-  }
 }

@@ -1,31 +1,30 @@
 // To parse this JSON data, do
 //
-//     final nowPlaying = nowPlayingFromMap(jsonString);
+//     final searchRespond = searchRespondFromMap(jsonString);
+
+// ignore_for_file: prefer_if_null_operators, prefer_null_aware_operators, unnecessary_null_comparison
 
 import 'dart:convert';
 
-class NowPlaying {
-  NowPlaying({
-    required this.dates,
+class SearchRespond {
+  SearchRespond({
     required this.page,
     required this.results,
     required this.totalPages,
     required this.totalResults,
   });
 
-  Dates dates;
   int page;
   List<Result> results;
   int totalPages;
   int totalResults;
 
-  factory NowPlaying.fromJson(String str) =>
-      NowPlaying.fromMap(json.decode(str));
+  factory SearchRespond.fromJson(String str) =>
+      SearchRespond.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory NowPlaying.fromMap(Map<String, dynamic> json) => NowPlaying(
-        dates: Dates.fromMap(json["dates"]),
+  factory SearchRespond.fromMap(Map<String, dynamic> json) => SearchRespond(
         page: json["page"] == null ? null : json["page"],
         results:
             List<Result>.from(json["results"].map((x) => Result.fromMap(x))),
@@ -35,7 +34,6 @@ class NowPlaying {
       );
 
   Map<String, dynamic> toMap() => {
-        "dates": dates == null ? null : dates.toMap(),
         "page": page == null ? null : page,
         "results": results == null
             ? null
@@ -45,40 +43,13 @@ class NowPlaying {
       };
 }
 
-class Dates {
-  Dates({
-    required this.maximum,
-    required this.minimum,
-  });
-
-  DateTime maximum;
-  DateTime minimum;
-
-  factory Dates.fromJson(String str) => Dates.fromMap(json.decode(str));
-
-  String toJson() => json.encode(toMap());
-
-  factory Dates.fromMap(Map<String, dynamic> json) => Dates(
-        maximum: DateTime.parse(json["maximum"]),
-        minimum: DateTime.parse(json["minimum"]),
-      );
-
-  Map<String, dynamic> toMap() => {
-        "maximum": maximum == null
-            ? null
-            : "${maximum.year.toString().padLeft(4, '0')}-${maximum.month.toString().padLeft(2, '0')}-${maximum.day.toString().padLeft(2, '0')}",
-        "minimum": minimum == null
-            ? null
-            : "${minimum.year.toString().padLeft(4, '0')}-${minimum.month.toString().padLeft(2, '0')}-${minimum.day.toString().padLeft(2, '0')}",
-      };
-}
-
 class Result {
   Result({
     required this.adult,
     required this.backdropPath,
     required this.genreIds,
     required this.id,
+    required this.originalLanguage,
     required this.originalTitle,
     required this.overview,
     required this.popularity,
@@ -94,7 +65,7 @@ class Result {
   String backdropPath;
   List<int> genreIds;
   int id;
-
+  String originalLanguage;
   String originalTitle;
   String overview;
   double popularity;
@@ -115,6 +86,9 @@ class Result {
             json["backdrop_path"] == null ? null : json["backdrop_path"],
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         id: json["id"] == null ? null : json["id"],
+        originalLanguage: json["original_language"] == null
+            ? null
+            : json["original_language"],
         originalTitle:
             json["original_title"] == null ? null : json["original_title"],
         overview: json["overview"] == null ? null : json["overview"],
@@ -137,6 +111,7 @@ class Result {
             ? null
             : List<dynamic>.from(genreIds.map((x) => x)),
         "id": id == null ? null : id,
+        "original_language": originalLanguage == null ? null : originalLanguage,
         "original_title": originalTitle == null ? null : originalTitle,
         "overview": overview == null ? null : overview,
         "popularity": popularity == null ? null : popularity,

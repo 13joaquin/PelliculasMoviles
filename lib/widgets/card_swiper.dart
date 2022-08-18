@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:pelicula2022/models/model.dart';
 
-class CardSwiper extends StatelessWidget {
-  const CardSwiper({Key? key}) : super(key: key);
+class CardSwipper extends StatelessWidget {
+  const CardSwipper({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // final List<Movie> movies;
+    final List<Movie> movies;
     return Container();
   }
 }
