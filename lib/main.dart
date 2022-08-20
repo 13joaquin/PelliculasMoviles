@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pelicula2022/models/list_page.dart';
 import 'package:pelicula2022/providers/movies_provider.dart';
 import 'package:pelicula2022/screens/form_screen.dart';
 import 'package:pelicula2022/screens/screen.dart';
@@ -28,11 +29,11 @@ class MyAppForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Coding with Curry',
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
-      ),
-      home: FormScreen(),
+      initialRoute: ListPage.Route,
+      routes: {
+        ListPage.Route: (_) => ListPage(),
+        SavePage.Route: (_) => SavePage()
+      },
     );
   }
 }
