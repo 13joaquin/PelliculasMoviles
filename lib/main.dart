@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pelicula2022/models/list_page.dart';
 import 'package:pelicula2022/providers/movies_provider.dart';
-import 'package:pelicula2022/screens/form_screen.dart';
 import 'package:pelicula2022/screens/screen.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(const AppState());
-  runApp(MyAppForm());
 }
 
 class AppState extends StatelessWidget {
@@ -25,19 +22,6 @@ class AppState extends StatelessWidget {
   }
 }
 
-class MyAppForm extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: ListPage.Route,
-      routes: {
-        ListPage.Route: (_) => ListPage(),
-        SavePage.Route: (_) => SavePage()
-      },
-    );
-  }
-}
-
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -45,7 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Peliculas App Udeo',
+        title: 'Péliculas App Udeo',
         initialRoute: 'home',
         routes: {
           'home': (_) => const HomeScreen(),

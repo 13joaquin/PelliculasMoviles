@@ -11,6 +11,7 @@ class Debouncer<T> {
 
   //get
   T get value => _value!;
+
   //set
   set value(T val) {
     _value = val;

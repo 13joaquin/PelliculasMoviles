@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pelicula2022/providers/movies_provider.dart';
+import 'package:pelicula2022/search/search_delegate.dart';
 import 'package:pelicula2022/widgets/card_swiper.dart';
+import 'package:pelicula2022/widgets/movie_slider.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -15,14 +17,20 @@ class HomeScreen extends StatelessWidget {
           elevation: 0,
           actions: [
             IconButton(
-              icon: Icon(Icons.search_outlined),
-              onPressed: () {},
-            )
+                icon: Icon(Icons.search_outlined),
+                onPressed: () => showSearch(
+                    context: context, delegate: MovieSearchDelegate()))
           ],
         ),
         body: SingleChildScrollView(
           child: Column(
-            children: [CardSwipper()],
+            children: [
+              CardSwiper(movies: moviesProvider.onDisplayMovies),
+              MovieSlider(
+                  movies: moviesProvider.popularMovies,
+                  title: "Populares",
+                  onNextPage: () => moviesProvider.getPopularMovies())
+            ],
           ),
         ));
   }
