@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pelicula2022/models/company_image.dart';
 import 'package:pelicula2022/providers/movies_provider.dart';
 import 'package:pelicula2022/screens/screen.dart';
 import 'package:provider/provider.dart';
@@ -34,6 +35,8 @@ class MyApp extends StatelessWidget {
         routes: {
           'home': (_) => const HomeScreen(),
           'details': (_) => const DetailsScreen(),
+          'credits': (_) => const CreditsScrenn(),
+          'company': (_) => const CompanySScreen(),
         },
         theme: ThemeData.light()
             .copyWith(appBarTheme: const AppBarTheme(color: Colors.indigo)));

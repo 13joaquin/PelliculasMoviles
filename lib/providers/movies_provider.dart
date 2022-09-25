@@ -63,6 +63,14 @@ class MoviesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  getCompany() async {
+    final jsonData = await this._getJsonData('3/movie/company/1');
+    final CompanyRespone = NowPlaying.fromJson(jsonData);
+
+    onDisplayMovies = CompanyRespone.results;
+    notifyListeners();
+  }
+
   Future<List<Cast>> getMovieCast(int movieId) async {
     if (moviesCast.containsKey(movieId)) return moviesCast[movieId]!;
 
